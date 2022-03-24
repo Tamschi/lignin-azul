@@ -32,6 +32,7 @@ maintenance = { status = "experimental" } # This may differ between branches.
 
 [dependencies]
 azul = { git = "https://github.com/fschutt/azul.git", features = ["link_static"] }
+lazy_static = "1.4.0"
 lignin = { version = "0.1.0", features = ["callbacks"] }
 lignin-schema = { git = "https://github.com/Tamschi/lignin-schema.git", branch = "develop" }
 tap = "1.0.1"
@@ -42,7 +43,9 @@ web-sys = "0.3.56"
 [dev-dependencies]
 asteracea = { git = "https://github.com/Tamschi/Asteracea.git", branch = "develop" }
 cargo-husky = "1.5.0"
+debugless-unwrap = "0.0.4"
 git_info = "0.1.2"
 rhizome = { git = "https://github.com/Tamschi/rhizome.git", branch = "develop" }
+this-is-fine = "0.0.1"
 version-sync = "0.9.3"
 wasm-bindgen-test = "0.3.28"

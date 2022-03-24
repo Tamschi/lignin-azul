@@ -22,7 +22,11 @@ use lignin_schema::{
 };
 use std::{
 	fmt::Write,
-	sync::atomic::{AtomicBool, Ordering},
+	sync::{
+		atomic::{AtomicBool, Ordering},
+		Mutex,
+	},
+	task::Waker,
 };
 use tap::Pipe;
 use tracing::error;
@@ -42,6 +46,16 @@ enum InnerError {
 }
 
 pub static UPDATE: AtomicBool = AtomicBool::new(false);
+
+lazy_static::lazy_static! {
+	pub static ref ON_PRESENTED: Mutex<Vec<Waker>> = Mutex::new(Vec::new());
+}
+
+fn drain_on_presented() {
+	for waker in ON_PRESENTED.lock().unwrap().drain(..) {
+		waker.wake()
+	}
+}
 
 pub fn render<'a, S: 'static + ThreadSafety>(
 	vdom: &'a Node<'a, S>,
@@ -147,6 +161,7 @@ fn render_element<S: 'static + ThreadSafety>(
 								)));
 
 							if UPDATE.load(Ordering::Relaxed) {
+								drain_on_presented();
 								Update::RefreshDom
 							} else {
 								Update::DoNothing
