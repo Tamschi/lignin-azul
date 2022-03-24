@@ -1,13 +1,13 @@
 [package]
-name = "TODO_CRATE_NAME"
+name = "lignin-azul"
 version = "0.0.1"
 authors = ["Tamme Schichler <tamme@schichler.dev>"]
 edition = "2018"
 description = "TODO_DESCRIPTION"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/Tamschi/TODO_CRATE_NAME"
-homepage = "https://github.com/Tamschi/TODO_CRATE_NAME/tree/v0.0.1"
-documentation = "https://docs.rs/TODO_CRATE_NAME/0.0.1"
+repository = "https://github.com/Tamschi/lignin-azul"
+homepage = "https://github.com/Tamschi/lignin-azul/tree/v0.0.1"
+documentation = "https://docs.rs/lignin-azul/0.0.1"
 keywords = [] #TODO
 categories = [] #TODO
 readme = "README.md"
@@ -26,12 +26,21 @@ resolver = "2"
 publish = false
 
 [badges]
-is-it-maintained-issue-resolution = { repository = "Tamschi/TODO_CRATE_NAME" }
-is-it-maintained-open-issues = { repository = "Tamschi/TODO_CRATE_NAME" }
+is-it-maintained-issue-resolution = { repository = "Tamschi/lignin-azul" }
+is-it-maintained-open-issues = { repository = "Tamschi/lignin-azul" }
 maintenance = { status = "experimental" } # This may differ between branches.
 
+[dependencies]
+azul = { git = "https://github.com/fschutt/azul.git", features = ["link_static"] }
+lignin = "0.1.0"
+lignin-schema = { git = "https://github.com/Tamschi/lignin-schema.git", branch = "develop" }
+tap = "1.0.1"
+tracing = "0.1.32"
+
 [dev-dependencies]
+asteracea = { git = "https://github.com/Tamschi/Asteracea.git", branch = "develop" }
 cargo-husky = "1.5.0"
 git_info = "0.1.2"
+rhizome = { git = "https://github.com/Tamschi/rhizome.git", branch = "develop" }
 version-sync = "0.9.3"
 wasm-bindgen-test = "0.3.28"
