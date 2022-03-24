@@ -7,17 +7,26 @@
 #![allow(clippy::semicolon_if_nothing_returned)]
 #![allow(missing_docs, clippy::missing_errors_doc, clippy::missing_panics_doc)] // TODO
 
-use std::fmt::Write;
-
 use azul::{
+	callbacks::{CallbackInfo, RefAny, Update},
 	dom::Dom,
 	prelude::{Css, StyledDom},
 	str::String as AzString,
 	widgets::Button,
 };
-use lignin::{Element, Node, ReorderableFragment, ThreadSafety};
+use lignin::{CallbackRef, Element, EventBinding, Node, ReorderableFragment, ThreadSafety};
+use lignin_schema::{
+	events::click,
+	html::elements::{button, div},
+	EventInfo,
+};
+use std::{
+	fmt::Write,
+	sync::atomic::{AtomicBool, Ordering},
+};
 use tap::Pipe;
 use tracing::error;
+use wasm_bindgen::{JsCast, JsValue};
 
 #[cfg(doctest)]
 #[doc = include_str!("../README.md")]
@@ -32,7 +41,9 @@ enum InnerError {
 	Unsupported { message: String },
 }
 
-pub fn render<'a, S: ThreadSafety>(
+pub static UPDATE: AtomicBool = AtomicBool::new(false);
+
+pub fn render<'a, S: 'static + ThreadSafety>(
 	vdom: &'a Node<'a, S>,
 	parent: &mut StyledDom,
 	depth_limit: usize,
@@ -99,29 +110,59 @@ pub fn render<'a, S: ThreadSafety>(
 	Ok(())
 }
 
-fn render_element<S: ThreadSafety>(
+fn render_element<S: 'static + ThreadSafety>(
 	element: &Element<S>,
 	parent: &mut StyledDom,
 	depth_limit: usize,
 ) -> Result<(), Error> {
 	let Element {
-		name,
-		creation_options,
-		attributes,
+		name: element_name,
+		creation_options: _,
+		attributes: _,
 		ref content,
 		event_bindings,
 	} = *element;
-	match name {
-		lignin_schema::html::elements::button::TAG_NAME => {
+	match element_name {
+		button::TAG_NAME => {
 			let mut text = String::new();
 			collect_text(content, &mut text, depth_limit - 1)?;
-			let mut button = Button::new(AzString::from_string(text));
-			button.dom().style(Css::empty())
+			let mut dom_button = Button::new(AzString::from_string(text));
+			for &EventBinding {
+				name: event_name,
+				callback,
+				options: _,
+			} in event_bindings
+			{
+				match event_name {
+					<dyn click>::NAME => dom_button.set_on_click(RefAny::new(callback), {
+						extern "C" fn on_click<S: 'static + ThreadSafety>(
+							callback: &mut RefAny,
+							_callback_info: &mut CallbackInfo,
+						) -> Update {
+							callback
+								.downcast_ref::<CallbackRef<S, fn(event: lignin::web::Event)>>()
+								.unwrap()
+								.call(lignin::web::Event::new(web_sys::Event::unchecked_from_js(
+									JsValue::UNDEFINED,
+								)));
+
+							if UPDATE.load(Ordering::Relaxed) {
+								Update::RefreshDom
+							} else {
+								Update::DoNothing
+							}
+						}
+						on_click::<S>
+					}),
+					_event => unimplemented!("Event {} on {}", event_name, element_name),
+				}
+			}
+			dom_button.dom().style(Css::empty())
 		}
-		lignin_schema::html::elements::div::TAG_NAME => {
-			let mut div = Dom::div().style(Css::empty());
-			render(content, &mut div, depth_limit - 1)?;
-			div
+		div::TAG_NAME => {
+			let mut dom_div = Dom::div().style(Css::empty());
+			render(content, &mut dom_div, depth_limit - 1)?;
+			dom_div
 		}
 		name => todo!("Element with name: {}", name),
 	}
@@ -131,7 +172,7 @@ fn render_element<S: ThreadSafety>(
 }
 
 fn collect_text<S: ThreadSafety>(
-	content: &Node<S>,
+	node: &Node<S>,
 	w: &mut impl Write,
 	depth_limit: usize,
 ) -> Result<(), Error> {
@@ -139,5 +180,39 @@ fn collect_text<S: ThreadSafety>(
 		error!("Depth limit exceeded.");
 		return Err(Error(InnerError::DepthLimitExceeded));
 	}
-	todo!()
+
+	match node {
+		Node::Comment { .. } => (),
+
+		Node::HtmlElement { .. } | Node::MathMlElement { .. } | Node::SvgElement { .. } => todo!(),
+
+		Node::Memoized {
+			state_key: _,
+			content,
+		} => collect_text(content, w, depth_limit - 1)?,
+
+		Node::Multi(multi) => {
+			for node in *multi {
+				collect_text(node, w, depth_limit - 1)?
+			}
+		}
+
+		Node::Keyed(keyed) => {
+			for ReorderableFragment {
+				dom_key: _,
+				content,
+			} in *keyed
+			{
+				collect_text(content, w, depth_limit - 1)?
+			}
+		}
+
+		Node::Text {
+			text,
+			dom_binding: _,
+		} => w.write_str(text).unwrap(),
+		Node::RemnantSite(_) => unimplemented!(),
+	}
+
+	Ok(())
 }

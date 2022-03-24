@@ -1,10 +1,9 @@
-use std::any::TypeId;
-use std::borrow::BorrowMut;
-use std::pin::Pin;
-
 use azul::prelude::*;
-use azul::str::String as AzString;
-use azul::widgets::{Button, Label};
+use std::{
+	any::TypeId,
+	pin::Pin,
+	sync::atomic::{AtomicU32, Ordering},
+};
 use tap::Pipe;
 
 extern "C" fn layout(data: &mut RefAny, _callback_info: &mut LayoutCallbackInfo) -> StyledDom {
@@ -37,5 +36,14 @@ fn main() {
 asteracea::component! {
 	TestApp()() -> !Sync
 
-	"Hello Asteracea!"
+	let self.counter = AtomicU32::new(0);
+	[
+		<button "Hello Button!"
+			on bubble click = fn(self, _event) {
+				self.counter.fetch_add(1, Ordering::Relaxed);
+				lignin_azul::UPDATE.store(true, Ordering::Relaxed);
+			}
+		>
+		!"The button was clicked {} times."(self.counter.load(Ordering::Relaxed))
+	]
 }

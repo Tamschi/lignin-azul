@@ -1091,6 +1091,11 @@ name = "lignin"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fac24f5e1ecf47470f0ff28d4ecc3f177f668457798143bde944df0a9498f0d7"
+dependencies = [
+ "lazy_static",
+ "wasm-bindgen",
+ "web-sys",
+]
 
 [[package]]
 name = "lignin-azul"
@@ -1106,7 +1111,9 @@ dependencies = [
  "tap",
  "tracing",
  "version-sync",
+ "wasm-bindgen",
  "wasm-bindgen-test",
+ "web-sys",
 ]
 
 [[package]]

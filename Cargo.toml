@@ -32,10 +32,12 @@ maintenance = { status = "experimental" } # This may differ between branches.
 
 [dependencies]
 azul = { git = "https://github.com/fschutt/azul.git", features = ["link_static"] }
-lignin = "0.1.0"
+lignin = { version = "0.1.0", features = ["callbacks"] }
 lignin-schema = { git = "https://github.com/Tamschi/lignin-schema.git", branch = "develop" }
 tap = "1.0.1"
 tracing = "0.1.32"
+wasm-bindgen = "0.2.79"
+web-sys = "0.3.56"
 
 [dev-dependencies]
 asteracea = { git = "https://github.com/Tamschi/Asteracea.git", branch = "develop" }
