@@ -1667,7 +1667,7 @@ dependencies = [
 [[package]]
 name = "rhizome"
 version = "0.0.1"
-source = "git+https://github.com/Tamschi/rhizome.git?branch=develop#a566bc0ebc3fc75214dcacb08f4d26166b5518c1"
+source = "git+https://github.com/Tamschi/rhizome.git?branch=develop#1d0b924dc74b361176032770a18bedf708d6303d"
 dependencies = [
  "fruit-salad",
  "pin-project",
