@@ -52,9 +52,9 @@ dependencies = [
 
 [[package]]
 name = "allsorts"
-version = "0.7.1"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d6a798bee48d71c9c3767f63001e6dbc61be382d04ecbe459b7d0f0a94180a8"
+checksum = "c3ed12eefecf19a1945a0ea0ed6261a271577ebc3140b73ff10260a52faf5368"
 dependencies = [
  "bitflags",
  "bitreader",
@@ -73,8 +73,8 @@ dependencies = [
  "tinyvec",
  "ucd-trie",
  "unicode-canonical-combining-class",
- "unicode-general-category",
- "unicode-joining-type 0.4.0",
+ "unicode-general-category 0.5.1",
+ "unicode-joining-type 0.6.0",
 ]
 
 [[package]]
@@ -110,7 +110,7 @@ dependencies = [
  "rustc-hash",
  "tinyvec",
  "ucd-trie",
- "unicode-general-category",
+ "unicode-general-category 0.3.0",
  "unicode-joining-type 0.5.0",
 ]
 
@@ -192,7 +192,7 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 [[package]]
 name = "azul"
 version = "1.0.0-beta1"
-source = "git+https://github.com/fschutt/azul.git#a4e32765624b8ffc4107e3b4cef57da13ea9dc1a"
+source = "git+https://github.com/fschutt/azul.git#6ff63a12e0f3d8cdfc571e21c44c699f341341d4"
 dependencies = [
  "azul-dll",
 ]
@@ -200,7 +200,7 @@ dependencies = [
 [[package]]
 name = "azul-core"
 version = "0.0.2"
-source = "git+https://github.com/fschutt/azul.git#a4e32765624b8ffc4107e3b4cef57da13ea9dc1a"
+source = "git+https://github.com/fschutt/azul.git#6ff63a12e0f3d8cdfc571e21c44c699f341341d4"
 dependencies = [
  "azul-css",
  "azul-css-parser",
@@ -214,7 +214,7 @@ dependencies = [
 [[package]]
 name = "azul-css"
 version = "0.0.1"
-source = "git+https://github.com/fschutt/azul.git#a4e32765624b8ffc4107e3b4cef57da13ea9dc1a"
+source = "git+https://github.com/fschutt/azul.git#6ff63a12e0f3d8cdfc571e21c44c699f341341d4"
 dependencies = [
  "libm",
 ]
@@ -222,7 +222,7 @@ dependencies = [
 [[package]]
 name = "azul-css-parser"
 version = "0.0.1"
-source = "git+https://github.com/fschutt/azul.git#a4e32765624b8ffc4107e3b4cef57da13ea9dc1a"
+source = "git+https://github.com/fschutt/azul.git#6ff63a12e0f3d8cdfc571e21c44c699f341341d4"
 dependencies = [
  "azul-css",
  "azul-simplecss",
@@ -231,7 +231,7 @@ dependencies = [
 [[package]]
 name = "azul-desktop"
 version = "0.0.5"
-source = "git+https://github.com/fschutt/azul.git#a4e32765624b8ffc4107e3b4cef57da13ea9dc1a"
+source = "git+https://github.com/fschutt/azul.git#6ff63a12e0f3d8cdfc571e21c44c699f341341d4"
 dependencies = [
  "azul-core",
  "azul-css",
@@ -256,7 +256,7 @@ dependencies = [
 [[package]]
 name = "azul-dll"
 version = "0.0.1"
-source = "git+https://github.com/fschutt/azul.git#a4e32765624b8ffc4107e3b4cef57da13ea9dc1a"
+source = "git+https://github.com/fschutt/azul.git#6ff63a12e0f3d8cdfc571e21c44c699f341341d4"
 dependencies = [
  "azul-core",
  "azul-desktop",
@@ -266,7 +266,7 @@ dependencies = [
 [[package]]
 name = "azul-layout"
 version = "0.0.4"
-source = "git+https://github.com/fschutt/azul.git#a4e32765624b8ffc4107e3b4cef57da13ea9dc1a"
+source = "git+https://github.com/fschutt/azul.git#6ff63a12e0f3d8cdfc571e21c44c699f341341d4"
 dependencies = [
  "azul-core",
  "azul-css",
@@ -307,7 +307,7 @@ checksum = "c303bfdf857413adbd19d9b15dddd9b4adb8e2be7e493c8a38d9fc6179a074ac"
 [[package]]
 name = "azul-text-layout"
 version = "0.0.5"
-source = "git+https://github.com/fschutt/azul.git#a4e32765624b8ffc4107e3b4cef57da13ea9dc1a"
+source = "git+https://github.com/fschutt/azul.git#6ff63a12e0f3d8cdfc571e21c44c699f341341d4"
 dependencies = [
  "allsorts",
  "azul-core",
@@ -401,7 +401,7 @@ dependencies = [
 [[package]]
 name = "azulc"
 version = "0.0.3"
-source = "git+https://github.com/fschutt/azul.git#a4e32765624b8ffc4107e3b4cef57da13ea9dc1a"
+source = "git+https://github.com/fschutt/azul.git#6ff63a12e0f3d8cdfc571e21c44c699f341341d4"
 dependencies = [
  "azul-core",
  "azul-css",
@@ -1565,9 +1565,9 @@ dependencies = [
 
 [[package]]
 name = "raw-window-handle"
-version = "0.4.2"
+version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fba75eee94a9d5273a68c9e1e105d9cffe1ef700532325788389e5a83e2522b7"
+checksum = "b800beb9b6e7d2df1fe337c9e3d04e3af22a124460fb4c30fcc22c9117cefb41"
 dependencies = [
  "cty",
 ]
@@ -1962,9 +1962,9 @@ dependencies = [
 
 [[package]]
 name = "tinyfiledialogs"
-version = "3.9.0"
+version = "3.9.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "adc577626a3c26e4e1d470dbe5fe33d6fabc14e57114cb377acdb4da1a17dde9"
+checksum = "e25fa0bc43a6566e2cc6d7ac96df3fa5a57beba34445bead1b368ba8fe9ca568"
 dependencies = [
  "cc",
  "libc",
@@ -2094,9 +2094,9 @@ checksum = "1a01404663e3db436ed2746d9fefef640d868edae3cceb81c3b8d5732fda678f"
 
 [[package]]
 name = "unicode-canonical-combining-class"
-version = "0.1.0"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c42783ad7965b01d53c0d8b0c0f9d6e7bae1b8b7db3392c6342cb1f6ee72e3a6"
+checksum = "3b096a36c3e75936616680e901b5e08c180f102ec6626249b4dd12f46b9d48e1"
 
 [[package]]
 name = "unicode-general-category"
@@ -2105,16 +2105,22 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "eab1e2c61f9441613aca1a1c88803bb36df292990aada6abb5133b9b532e07ec"
 
 [[package]]
-name = "unicode-joining-type"
-version = "0.4.0"
+name = "unicode-general-category"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8896d2fce4865edb68e5a39b48f4281d041f743de5b9f0380ba4dd0ef51497e4"
+checksum = "1218098468b8085b19a2824104c70d976491d247ce194bbd9dc77181150cdfd6"
 
 [[package]]
 name = "unicode-joining-type"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f679bc6da501427c9911a6f7fdb0e35238d49fecda2c80704042442233bebda"
+
+[[package]]
+name = "unicode-joining-type"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4e069b4c5aba86d99ec9fc1b6d208b8b582f46c5d29a3cd7f3fd6806249fa50d"
 
 [[package]]
 name = "unicode-normalization"
