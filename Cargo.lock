@@ -145,7 +145,7 @@ checksum = "8da52d66c7071e2e3fa2a1e5c6d088fec47b593032b254f5e980de8ea54454d6"
 [[package]]
 name = "asteracea"
 version = "0.0.2"
-source = "git+https://github.com/Tamschi/Asteracea.git?branch=develop#745eec5adad6865e38f1b699a2444da2bdf17f75"
+source = "git+https://github.com/Tamschi/Asteracea.git?branch=develop#c6348f7c0eeebada8ff098504df1ac6761b4f68b"
 dependencies = [
  "asteracea_proc-macro-definitions",
  "bumpalo",
@@ -163,7 +163,7 @@ dependencies = [
 [[package]]
 name = "asteracea_proc-macro-definitions"
 version = "0.0.2"
-source = "git+https://github.com/Tamschi/Asteracea.git?branch=develop#745eec5adad6865e38f1b699a2444da2bdf17f75"
+source = "git+https://github.com/Tamschi/Asteracea.git?branch=develop#c6348f7c0eeebada8ff098504df1ac6761b4f68b"
 dependencies = [
  "call2-for-syn",
  "debugless-unwrap",
@@ -1667,7 +1667,7 @@ dependencies = [
 [[package]]
 name = "rhizome"
 version = "0.0.1"
-source = "git+https://github.com/Tamschi/rhizome.git?branch=develop#a566bc0ebc3fc75214dcacb08f4d26166b5518c1"
+source = "git+https://github.com/Tamschi/rhizome.git?branch=develop#1d0b924dc74b361176032770a18bedf708d6303d"
 dependencies = [
  "fruit-salad",
  "pin-project",
