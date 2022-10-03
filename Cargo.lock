@@ -145,7 +145,7 @@ checksum = "8da52d66c7071e2e3fa2a1e5c6d088fec47b593032b254f5e980de8ea54454d6"
 [[package]]
 name = "asteracea"
 version = "0.0.2"
-source = "git+https://github.com/Tamschi/Asteracea.git?branch=develop#745eec5adad6865e38f1b699a2444da2bdf17f75"
+source = "git+https://github.com/Tamschi/Asteracea.git?branch=develop#1c8c410372c18fd529488fdc93708b1af4c168c0"
 dependencies = [
  "asteracea_proc-macro-definitions",
  "bumpalo",
@@ -163,7 +163,7 @@ dependencies = [
 [[package]]
 name = "asteracea_proc-macro-definitions"
 version = "0.0.2"
-source = "git+https://github.com/Tamschi/Asteracea.git?branch=develop#745eec5adad6865e38f1b699a2444da2bdf17f75"
+source = "git+https://github.com/Tamschi/Asteracea.git?branch=develop#1c8c410372c18fd529488fdc93708b1af4c168c0"
 dependencies = [
  "call2-for-syn",
  "debugless-unwrap",
@@ -1667,7 +1667,7 @@ dependencies = [
 [[package]]
 name = "rhizome"
 version = "0.0.1"
-source = "git+https://github.com/Tamschi/rhizome.git?branch=develop#a566bc0ebc3fc75214dcacb08f4d26166b5518c1"
+source = "git+https://github.com/Tamschi/rhizome.git?branch=develop#1d0b924dc74b361176032770a18bedf708d6303d"
 dependencies = [
  "fruit-salad",
  "pin-project",
@@ -2062,9 +2062,9 @@ checksum = "0685c84d5d54d1c26f7d3eb96cd41550adb97baed141a761cf335d3d33bcd0ae"
 
 [[package]]
 name = "typed-builder"
-version = "0.9.1"
+version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a46ee5bd706ff79131be9c94e7edcb82b703c487766a114434e5790361cf08c5"
+checksum = "89851716b67b937e393b3daa8423e67ddfc4bbbf1654bcf05488e95e0828db0c"
 dependencies = [
  "proc-macro2",
  "quote",
